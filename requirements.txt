@@ -1,0 +1,7 @@
+requests
+google-cloud-pubsub
+apache-beam[gcp]
+kafka-python
+google-cloud-logging
+apache-airflow[gcp]
+

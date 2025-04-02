@@ -1,0 +1,44 @@
+{
+    "dashboard": {
+      "title": "YouTube Data Analysis",
+      "widgets": [
+        {
+          "type": "table",
+          "title": "Top 10 Videos by Views",
+          "data_source": "BigQuery",
+          "query": "SELECT video_id, title, views FROM `your-project-id.youtube_dataset.youtube_data` ORDER BY views DESC LIMIT 10"
+        },
+        {
+          "type": "line_chart",
+          "title": "Daily Video Uploads",
+          "data_source": "BigQuery",
+          "query": "SELECT DATE(published_at) AS date, COUNT(*) AS video_count FROM `your-project-id.youtube_dataset.youtube_data` GROUP BY date ORDER BY date"
+        },
+        {
+          "type": "bar_chart",
+          "title": "Top Channels by Videos",
+          "data_source": "BigQuery",
+          "query": "SELECT channel_title, COUNT(*) AS video_count FROM `your-project-id.youtube_dataset.youtube_data` GROUP BY channel_title ORDER BY video_count DESC LIMIT 10"
+        },
+        {
+          "type": "geo_chart",
+          "title": "Views by Country",
+          "data_source": "BigQuery",
+          "query": "SELECT country, SUM(views) AS total_views FROM `your-project-id.youtube_dataset.youtube_data` GROUP BY country ORDER BY total_views DESC"
+        }
+      ],
+      "filters": [
+        {
+          "name": "Date Range",
+          "type": "date",
+          "column": "published_at"
+        },
+        {
+          "name": "Channel",
+          "type": "dropdown",
+          "column": "channel_title"
+        }
+      ]
+    }
+  }
+  
